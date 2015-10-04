@@ -1,0 +1,13 @@
+#!/bin/sh
+
+BOT_NAME='djcat'
+KEEPALIVE_URL='http://localhost'
+SLACK_TOKEN='xxx'
+JPOP_ROOM='general'
+
+# export HUBOT_ADAPTER=slack
+export HUBOT_NAME=$BOT_NAME
+export HUBOT_SLACK_TOKEN=$SLACK_TOKEN
+export HUBOT_HEROKU_KEEPALIVE_URL=$KEEPALIVE_URL
+export HUBOt_JPOP_ROOM=$JPOP_ROOM
+./bin/hubot
