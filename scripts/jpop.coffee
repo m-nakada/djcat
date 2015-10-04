@@ -47,8 +47,7 @@ sendSong = (robot, room_name, songs) ->
 
 module.exports = (robot) ->
   new cronJob
-    # cronTime: "* * 10-19 * * 1-5"
-    cronTime: "*/10 * 23 * * *"
+    cronTime: "* * 10-19 * * 1-5"
     onTick: ->
       sendSong robot, ROOM_GENERAL, SONGS
       return
