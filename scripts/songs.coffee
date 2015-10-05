@@ -114,32 +114,32 @@ sendSong = (robot, songs) ->
     return
 
   return if holiday.isHoliday(new Date())
-  room    = {room: process.env.HUBOT_SLACK_ROOM}
-  song    = songs[ Math.floor(Math.random() * songs.length) ]
+  room = {room: process.env.HUBOT_SLACK_ROOM}
+  song = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
 
 module.exports = (robot) ->
+# Indies Rock
+new cronJob
+  cronTime: "00 00 10-19 * * 1"
+  onTick: ->
+    sendSong robot, SONGS_INDIES
+    return
+  start: true
+  timeZone: "Asia/Tokyo"
+
   # J-POP
   new cronJob
-    cronTime: "* * 10-19 * * 1,5"
+    cronTime: "00 00 10-19 * * 2,5"
     onTick: ->
       sendSong robot, SONGS_JPOP
       return
     start: true
     timeZone: "Asia/Tokyo"
 
-# Indies Rock
-new cronJob
-  cronTime: "* * 10-19 * * 2"
-  onTick: ->
-    sendSong robot, SONGS_JPOP
-    return
-  start: true
-  timeZone: "Asia/Tokyo"
-
 # Post Classical
 new cronJob
-  cronTime: "* * 10-19 * * 3"
+  cronTime: "00 00 10-19 * * 3"
   onTick: ->
     sendSong robot, SONGS_POST_CLASSICAL
     return
@@ -148,7 +148,7 @@ new cronJob
 
 # Soul
 new cronJob
-  cronTime: "* * 10-19 * * 4"
+  cronTime: "00 00 10-19 * * 4"
   onTick: ->
     sendSong robot, SONGS_SOUL
     return
