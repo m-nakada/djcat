@@ -114,7 +114,7 @@ sendSong = (robot, songs) ->
     return
 
   return if holiday.isHoliday(new Date())
-  room    = {room: process.env.HUBOT_ROOM_JPOP}
+  room    = {room: process.env.HUBOT_SLACK_ROOM}
   song    = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
 
