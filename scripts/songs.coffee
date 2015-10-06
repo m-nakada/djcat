@@ -109,8 +109,8 @@ SONGS_SOUL = [
 ]
 
 sendSong = (robot, songs) ->
-  unless process.env.HUBOT_ROOM_JPOP
-    robot.logger.error "Missing HUBOT_ROOM_JPOP. `heroku config:set HUBOT_ROOM_JPOP=room name`"
+  unless process.env.HUBOT_SLACK_ROOM
+    robot.logger.error "Missing HUBOT_SLACK_ROOM. `heroku config:set HUBOT_SLACK_ROOM=room name`"
     return
 
   return if holiday.isHoliday(new Date())
