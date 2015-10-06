@@ -119,14 +119,14 @@ sendSong = (robot, songs) ->
   robot.send room, song
 
 module.exports = (robot) ->
-# Indies Rock
-new cronJob
-  cronTime: "00 00 10-19 * * 1"
-  onTick: ->
-    sendSong robot, SONGS_INDIES
-    return
-  start: true
-  timeZone: "Asia/Tokyo"
+  # Indies Rock
+  new cronJob
+    cronTime: "00 00 10-19 * * 1"
+    onTick: ->
+      sendSong robot, SONGS_INDIES
+      return
+    start: true
+    timeZone: "Asia/Tokyo"
 
   # J-POP
   new cronJob
@@ -137,20 +137,20 @@ new cronJob
     start: true
     timeZone: "Asia/Tokyo"
 
-# Post Classical
-new cronJob
-  cronTime: "00 00 10-19 * * 3"
-  onTick: ->
-    sendSong robot, SONGS_POST_CLASSICAL
-    return
-  start: true
-  timeZone: "Asia/Tokyo"
+  # Post Classical
+  new cronJob
+    cronTime: "00 00 10-19 * * 3"
+    onTick: ->
+      sendSong robot, SONGS_POST_CLASSICAL
+      return
+    start: true
+    timeZone: "Asia/Tokyo"
 
-# Soul
-new cronJob
-  cronTime: "00 00 10-19 * * 4"
-  onTick: ->
-    sendSong robot, SONGS_SOUL
-    return
-  start: true
-  timeZone: "Asia/Tokyo"
+  # Soul
+  new cronJob
+    cronTime: "00 00 10-19 * * 4"
+    onTick: ->
+      sendSong robot, SONGS_SOUL
+      return
+    start: true
+    timeZone: "Asia/Tokyo"
