@@ -7,8 +7,13 @@
 # Author:
 #   m-nakada
 
+fs = require 'fs'
 holiday = require 'holiday-jp'
 cronJob = require('cron').CronJob
+SONGS_VA = []
+
+fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
+  SONGS_VA = text.split "\n"
 
 SONGS_JPOP = [
   "https://www.youtube.com/watch?v=lfETQNfBAD4", # cero / Summer Soul【OFFICIAL MUSIC VIDEO】
@@ -32,9 +37,43 @@ SONGS_JPOP = [
   "https://www.youtube.com/watch?v=qzmgAsjcLiQ", # まとめを読まないままにして　空気公団
   "https://www.youtube.com/watch?v=m5UiOcrixLk", # 阿部芙蓉美(Fuyumi Abe)「革命前夜」/ music video
   "https://vimeo.com/111519406",                 # 森は生きている - 煙夜の夢
+  "https://www.youtube.com/watch?v=WuS80BsFjr4", # Alfred Beach Sandal "モノポリー"
 ]
 
 SONGS_INDIES = [
+  "https://www.youtube.com/watch?v=p-ca1ocriv0", # Ludovico Einaudi "Walk" (Official Video)
+  "https://www.youtube.com/watch?v=G1WLy2Bm4Gw", # Ludovico Einaudi - Rose
+  "https://www.youtube.com/watch?v=CB2wPf8ffIQ", # Balmorhea - Baleen Morning
+  "https://www.youtube.com/watch?v=RSoXgL8dQ5g", # Balmorhea - Pilgrim
+  "https://www.youtube.com/watch?v=r-Qu7WWE2VY", # Nils Frahm - You
+  "https://www.youtube.com/watch?v=mYIfiQlfaas", # Ólafur Arnalds - Ljósið (Official Music Video)
+  "https://www.youtube.com/watch?v=kiZBWhWqE84", # ten to sen - scene-2
+  "https://www.youtube.com/watch?v=UQ4dAUNU2yg", # Quentin Sirjacq - memory 2
+  "https://www.youtube.com/watch?v=_I2nk1qs2hQ", # Jazmine Sullivan - Good Enough
+  "https://www.youtube.com/watch?v=X63EkrpHywE", # macy gray-what i gotta do
+  "https://www.youtube.com/watch?v=MDv74VPHW1Q", # José James - Come To My Door
+  "https://www.youtube.com/watch?v=bMJkddvJ4L4", # Jessie Ware - Wildest Moments
+  "https://www.youtube.com/watch?v=Wo2QB2kqG_w", # Jessie Ware - You & I (Forever)
+  "https://www.youtube.com/watch?v=Vk-9tu5V2Hw", # Power - Groovin'
+  "https://www.youtube.com/watch?v=ZCkzeD_1-qA", # G C Cameron - Give Me Your Love
+  "https://www.youtube.com/watch?v=JacdLT4QdrQ", # More Today Than Yesterday - Patti Austin
+  "https://www.youtube.com/watch?v=gJeWaBbowsY", # Faith Evans - Dumb
+  "https://www.youtube.com/watch?v=RehgZXGEsxQ", # Daley - Game Over / Lyrics
+  "https://www.youtube.com/watch?v=Y6jC9bWjMHU", # Jill-Scott - Lovely Day <= No Link
+  "https://www.youtube.com/watch?v=by8-4UKwcKU", # Vince Andrews Love, Oh Love
+  "https://www.youtube.com/watch?v=OiwiNA3-GyA", # SOUL GENERATION-ray of hope
+  "https://www.youtube.com/watch?v=EJY5se7G-7Q", # Sabrina Starke - Just The Two Of Us (Official Audio)
+  "https://www.youtube.com/watch?v=9HvpIgHBSdo", # Gregory Porter - Be Good (Lion's Song) Official Video
+  "https://www.youtube.com/watch?v=3ZP3UQ0ESLc", # The Spinners - It's A Shame (Slayd5000)
+  "https://www.youtube.com/watch?v=ZB4IPXHElds", # The Chi Lites When Temptation Comes
+  "https://www.youtube.com/watch?v=tjE-sbU7Wwc", # The Brand New Heavies - One More For The Road
+  "https://www.youtube.com/watch?v=SkIwZsqMtUs", # Saskwatch - Only One
+  "https://www.youtube.com/watch?v=HH3ruuml-R4", # Stephen Stills - Love The One You're With
+  "https://www.youtube.com/watch?v=KOTOnFKKx7M", # Clean Up Woman - Betty Wright (1971)
+  "https://www.youtube.com/watch?v=lbLMABnJ7Vc", # Brigitte - A bouche que veux-tu
+  "https://www.youtube.com/watch?v=SR0Mx0OazBU", # Tété - La bande son de ta vie (Clip Officiel)
+  "https://www.youtube.com/watch?v=r5eDYt1dIsM", # António Zambujo - "Valsa do Vai Não Vás"
+  "https://www.youtube.com/watch?v=bjjc59FgUpg", # Cinematic Orchestra - To Build A Home (feat. Patrick Watson)
   "https://www.youtube.com/watch?v=8ty_g5U9-co", # CHVRCHES - The Mother We Share
   "https://www.youtube.com/watch?v=tpprOGsLWUo", # Elvis Costello - Pump it up
   "https://www.youtube.com/watch?v=i7qR1aOKgQ4", # Toro y Moi - Run Baby Run
@@ -64,48 +103,30 @@ SONGS_INDIES = [
   "https://www.youtube.com/watch?v=TD_Q9CxXTo4", # Wolf Alice - Bros
   "https://www.youtube.com/watch?v=f4dZbJHT7_4", # Volcano Choir - "Comrade"
   "https://www.youtube.com/watch?v=JI-G5Cd6OeU", # Stereolab - Wow and Flutter
-]
-
-SONGS_POST_CLASSICAL = [
-  "https://www.youtube.com/watch?v=BeeHtJQ2cWw", # Haruka Nakamura - 夕べの祈り
-  "https://www.youtube.com/watch?v=p-ca1ocriv0", # Ludovico Einaudi "Walk" (Official Video)
-  "https://www.youtube.com/watch?v=G1WLy2Bm4Gw", # Ludovico Einaudi - Rose
-  "https://www.youtube.com/watch?v=CB2wPf8ffIQ", # Balmorhea - Baleen Morning
-  "https://www.youtube.com/watch?v=RSoXgL8dQ5g", # Balmorhea - Pilgrim
-  "https://www.youtube.com/watch?v=y8I0-b1mzwA", # Dakota Suite - Hands Swollen With Grace
-  "https://www.youtube.com/watch?v=r-Qu7WWE2VY", # Nils Frahm - You
-  "https://www.youtube.com/watch?v=mYIfiQlfaas", # Ólafur Arnalds - Ljósið (Official Music Video)
-  "https://www.youtube.com/watch?v=kiZBWhWqE84", # ten to sen - scene-2
-  "https://www.youtube.com/watch?v=YmWH1hL5cd8", # Light dance / Akira Kosemura
-  "https://www.youtube.com/watch?v=UQ4dAUNU2yg", # Quentin Sirjacq - memory 2
-]
-
-SONGS_SOUL = [
-  "https://www.youtube.com/watch?v=_I2nk1qs2hQ", # Jazmine Sullivan - Good Enough
-  "https://www.youtube.com/watch?v=X63EkrpHywE", # macy gray-what i gotta do
-  "https://www.youtube.com/watch?v=MDv74VPHW1Q", # José James - Come To My Door
-  "https://www.youtube.com/watch?v=bMJkddvJ4L4", # Jessie Ware - Wildest Moments
-  "https://www.youtube.com/watch?v=Wo2QB2kqG_w", # Jessie Ware - You & I (Forever)
-  "https://www.youtube.com/watch?v=Vk-9tu5V2Hw", # Power - Groovin'
-  "https://www.youtube.com/watch?v=ZCkzeD_1-qA", # G C Cameron - Give Me Your Love
-  "https://www.youtube.com/watch?v=JacdLT4QdrQ", # More Today Than Yesterday - Patti Austin
-  "https://www.youtube.com/watch?v=gJeWaBbowsY", # Faith Evans - Dumb
-  "https://www.youtube.com/watch?v=RehgZXGEsxQ", # Daley - Game Over / Lyrics
-  "https://www.youtube.com/watch?v=Y6jC9bWjMHU", # Jill-Scott - Lovely Day <= No Link
-  "https://www.youtube.com/watch?v=by8-4UKwcKU", # Vince Andrews Love, Oh Love
-  "https://www.youtube.com/watch?v=OiwiNA3-GyA", # SOUL GENERATION-ray of hope
-  "https://www.youtube.com/watch?v=EJY5se7G-7Q", # Sabrina Starke - Just The Two Of Us (Official Audio)
-  "https://www.youtube.com/watch?v=9HvpIgHBSdo", # Gregory Porter - Be Good (Lion's Song) Official Video
-  "https://www.youtube.com/watch?v=3ZP3UQ0ESLc", # The Spinners - It's A Shame (Slayd5000)
-  "https://www.youtube.com/watch?v=ZB4IPXHElds", # The Chi Lites When Temptation Comes
-  "https://www.youtube.com/watch?v=tjE-sbU7Wwc", # The Brand New Heavies - One More For The Road
-  "https://www.youtube.com/watch?v=SkIwZsqMtUs", # Saskwatch - Only One
-  "https://www.youtube.com/watch?v=HH3ruuml-R4", # Stephen Stills - Love The One You're With
-  "https://www.youtube.com/watch?v=KOTOnFKKx7M", # Clean Up Woman - Betty Wright (1971)
-  "https://www.youtube.com/watch?v=lbLMABnJ7Vc", # Brigitte - A bouche que veux-tu
-  "https://www.youtube.com/watch?v=SR0Mx0OazBU", # Tété - La bande son de ta vie (Clip Officiel)
-  "https://www.youtube.com/watch?v=r5eDYt1dIsM", # António Zambujo - "Valsa do Vai Não Vás"
-  "https://www.youtube.com/watch?v=bjjc59FgUpg", # Cinematic Orchestra - To Build A Home (feat. Patrick Watson)
+  "https://www.youtube.com/watch?v=a8Kd6cgBatg", # Anika - Terry
+  "https://www.youtube.com/watch?v=n5kpLXfwVTc", # BEACH HOUSE ** "SPARKS" (OFFICIAL AUDIO STREAM)
+  "https://www.youtube.com/watch?v=vOhLbA-B-bE", # Best Coast - Feeling Ok
+  "https://www.youtube.com/watch?v=wLgHKHw2ZnY", # Best Coast - Heaven Sent
+  "https://www.youtube.com/watch?v=YaenB-_crmE", # Boy - This is the Beginning
+  "https://www.youtube.com/watch?v=WD4-jCn7Svc", # boy - waitress (HD)
+  "https://www.youtube.com/watch?v=QpFXXPruuqU", # CHVRCHES - Clearest Blue (lyric video)
+  "https://www.youtube.com/watch?v=oZ70q4_GTpQ", # Cold War Kids - Nights & Weekends (Official Video)
+  "https://www.youtube.com/watch?v=SZzJ78FWjl8", # Cold War Kids - First
+  "https://www.youtube.com/watch?v=pa1uup8n0OQ", # Courtney Barnett - Elevator Operator - 3/17/2015
+  "https://www.youtube.com/watch?v=o-nr1nNC3ds", # Pedestrian At Best - Courtney Barnett
+  "https://www.youtube.com/watch?v=Njb3JTZ1ibY", # Dead Fox - Courtney Barnett
+  "https://www.youtube.com/watch?v=2ZOGlFdReMM", # Courtney Barnett - Nobody Really Cares If You Don't Go To The Party
+  "https://www.youtube.com/watch?v=cOftOXAaBuo", # Craft Spells - After The Moment
+  "https://www.youtube.com/watch?v=z_kL3pbtwEM", # Craft Spells - Nausea
+  "https://www.youtube.com/watch?v=R_AYZaXz-8g", # Emily King - Good Friend
+  "https://www.youtube.com/watch?v=6th29WxOJ-s", # Emily King - The Animals
+  "https://www.youtube.com/watch?v=EbmQp6LMdxs", # Emily King - Off Center
+  "https://www.youtube.com/watch?v=mKTfugNaQpk", # Florence + The Machine - Only If For A Night (Live Royal Albert Hall)
+  "https://www.youtube.com/watch?v=WbN0nX61rIs", # Florence + The Machine - Shake It Out
+  "https://www.youtube.com/watch?v=eiH2UHYfZZM", # Florence + The Machine - What Kind Of Man - Later… with Jools Holland - BBC Two
+  "https://www.youtube.com/watch?v=KdceK2E-w_8", # Florence + The Machine - Delilah - Live at Glastonbury 2015
+  "https://www.youtube.com/watch?v=VwLRFCAQi7E", # HNNY - Sunday
+  "https://www.youtube.com/watch?v=KTdXS8NspmQ", # HNNY - You Feeling Alright
 ]
 
 sendSong = (robot, songs) ->
@@ -119,38 +140,29 @@ sendSong = (robot, songs) ->
   robot.send room, song
 
 module.exports = (robot) ->
-  # Indies Rock
+  # VA
   new cronJob
-    cronTime: "00 00 10-19 * * 1"
+    cronTime: "0 */20 10-19 * * 1,5"
     onTick: ->
-      sendSong robot, SONGS_INDIES
-      return
-    start: true
-    timeZone: "Asia/Tokyo"
-
-  # Post Classical
-  new cronJob
-    cronTime: "00 00 10-19 * * 2"
-    onTick: ->
-      sendSong robot, SONGS_POST_CLASSICAL
+      sendSong robot, SONGS_VA
       return
     start: true
     timeZone: "Asia/Tokyo"
 
   # J-POP
   new cronJob
-    cronTime: "00 00 10-19 * * 3,5"
+    cronTime: "0 */30 10-19 * * 3"
     onTick: ->
       sendSong robot, SONGS_JPOP
       return
     start: true
     timeZone: "Asia/Tokyo"
 
-  # Soul
+  # Indies
   new cronJob
-    cronTime: "00 00 10-19 * * 4"
+    cronTime: "0 */30 10-19 * * 4"
     onTick: ->
-      sendSong robot, SONGS_SOUL
+      sendSong robot, SONGS_INDIES
       return
     start: true
     timeZone: "Asia/Tokyo"
