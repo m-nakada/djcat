@@ -128,20 +128,20 @@ module.exports = (robot) ->
     start: true
     timeZone: "Asia/Tokyo"
 
-  # J-POP
+  # Post Classical
   new cronJob
-    cronTime: "00 00 10-19 * * 2,5"
+    cronTime: "00 00 10-19 * * 2"
     onTick: ->
-      sendSong robot, SONGS_JPOP
+      sendSong robot, SONGS_POST_CLASSICAL
       return
     start: true
     timeZone: "Asia/Tokyo"
 
-  # Post Classical
+  # J-POP
   new cronJob
-    cronTime: "00 00 10-19 * * 3"
+    cronTime: "00 00 10-19 * * 3,5"
     onTick: ->
-      sendSong robot, SONGS_POST_CLASSICAL
+      sendSong robot, SONGS_JPOP
       return
     start: true
     timeZone: "Asia/Tokyo"
