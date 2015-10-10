@@ -32,12 +32,19 @@ SONGS_JPOP = [
   "https://soundcloud.com/headzpromo/kedama_sample_4", # 毛玉 - 新しい生活 from 1st album "新しい生活"
   "https://www.youtube.com/watch?v=OlqC1BBVk70", # Spangle call Lilli line 「azure」 (Official Music Video)
   "https://www.youtube.com/watch?v=qL8h-yhhRJE", # Spangle call Lilli line - E
+  "https://www.youtube.com/watch?v=h2FxhiY7qGg", # Spangle call Lilli line 「feel uneasy」 feat. moto kawabe from mitsume (Official Music Video)
   "https://soundcloud.com/shippai/the-sea",      # 失敗しない生き方 - 海を見に行こうよ
   "https://www.youtube.com/watch?v=wZ9sVKXgzbM", # 失敗しない生き方「クックブック」 at 三鷹おんがくのじかん
   "https://www.youtube.com/watch?v=qzmgAsjcLiQ", # まとめを読まないままにして　空気公団
-  "https://www.youtube.com/watch?v=m5UiOcrixLk", # 阿部芙蓉美(Fuyumi Abe)「革命前夜」/ music video
+  "https://www.youtube.com/watch?v=m5UiOcrixLk", # 阿部芙蓉美「革命前夜」/ music video
   "https://vimeo.com/111519406",                 # 森は生きている - 煙夜の夢
   "https://www.youtube.com/watch?v=WuS80BsFjr4", # Alfred Beach Sandal "モノポリー"
+  "https://www.youtube.com/watch?v=P_Oi4GMkWkU", # RF - Right here
+  "https://www.youtube.com/watch?v=XRvrsLDrjEk", # RF - I'll still love you (King James Version)
+  "https://www.youtube.com/watch?v=ClAUw3t4lAA", # RF - High & dry (Radiohead cover)
+  "https://www.youtube.com/watch?v=bcBY4zNEcUk", # RF - You gotta be (Des'ree cover)
+  "https://www.youtube.com/watch?v=ij_-rRkBeU0", # Homecomings "LEMON SOUNDS"（Official Music Video）
+  "https://www.youtube.com/watch?v=Gy4Mw43qDYo", # Homecomings "I Want You Back
 ]
 
 SONGS_INDIES = [
@@ -146,6 +153,15 @@ SONGS_INDIES = [
   "https://www.youtube.com/watch?v=eUGE3tcHMbY", # Júníus Meyvant : Signals
   "https://www.youtube.com/watch?v=FNwgOkl5nRY", # Kaleo - All The Pretty Girls (Official Video)
   "https://www.youtube.com/watch?v=9WIU5NN1Q0g", # Kaleo - "Way Down We Go" (LIVE in a volcano)
+  "https://www.youtube.com/watch?v=sng_CdAAw8M", # Rhye - Open
+  "https://www.youtube.com/watch?v=JJS5ywEIsA4", # Rhye - The Fall
+  'https://www.youtube.com/watch?v=90luQzm_Pdo', # Flight Facilities - Merimbula
+  'https://www.youtube.com/watch?v=l_EIE5f2t6M', # FOALS - Mountain At My Gates [Official Music Video]
+  'https://www.youtube.com/watch?v=vbTVQ9bjERo', # FOALS - Albatross [CCTV]
+  'https://www.youtube.com/watch?v=gb2__Jkyxs4', # How To Dress Well - What You Wanted (Official Audio)
+  'https://www.youtube.com/watch?v=Q_nQd7Z8WEw', # Lord Huron - Love Like Ghosts
+  'https://www.youtube.com/watch?v=Exksvl89CfM', # Lord Huron – Until The Night Turns (Audio)
+  'https://www.youtube.com/watch?v=9JrEo0hJHYw', # Lord Huron - Dead Man's Hand (Live on KEXP)
 ]
 
 sendSong = (robot, songs) ->
