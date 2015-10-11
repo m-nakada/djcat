@@ -164,6 +164,19 @@ SONGS = [
   'https://www.youtube.com/watch?v=ybjpIt9oPuo', # Cat Power / Manhattan
   'https://www.youtube.com/watch?v=imMMrGeiGDU', # Ayo / Fire
   'https://www.youtube.com/watch?v=_R_pepwMnRs', # Aymé / Make Up
+  'https://www.youtube.com/watch?v=O3CkfvYMCWM', # Camera Obscura / French Navy (Official Video)
+  'https://www.youtube.com/watch?v=UCVWrqxyt3Y', # Deerhunter / Breaker
+  'https://www.youtube.com/watch?v=slQJq1OUXyo', # SOHN / Lessons
+  'https://www.youtube.com/watch?v=5jv4lgFrL7U', # St. Vincent / 4AD Session
+  'https://www.youtube.com/watch?v=AZW9NYX6JZA', # St. Vincent / Actor Out Of Work (Official Video)
+  'https://www.youtube.com/watch?v=Itt0rALeHE8', # St. Vincent / Cruel (Official Video)
+  'https://www.youtube.com/watch?v=mVAxUMuhz98', # St. Vincent / Digital Witness
+  'https://www.youtube.com/watch?v=vVj3rTWfVVw', # Efterklang / Modern Drift (Official Video)
+  'https://www.youtube.com/watch?v=Efg1h0EzLeE', # The National / Terrible Love (Alternate Version)
+  'https://www.youtube.com/watch?v=Jpz_gUyImhw', # The National / Graceless
+  'https://www.youtube.com/watch?v=zmVdK_PM3dc', # inc. / Black Wings
+  'https://www.youtube.com/watch?v=lMDYDE3Ya28', # inc. / Angel
+  'https://www.youtube.com/watch?v=KVmNaMy_CLA', # inc. - the place
 ]
 
 sendSong = (robot, songs) ->
