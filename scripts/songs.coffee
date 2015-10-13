@@ -141,6 +141,7 @@ SONGS = [
   "https://www.youtube.com/watch?v=_WsOS8QvR74", # James Blake / We Might Feel Unsound
   "https://www.youtube.com/watch?v=6p6PcFFUm5I", # James Blake / Retrograde
   "https://www.youtube.com/watch?v=D2kr9udP6Zo", # James Blake / CMYK - Pitchfork Music Festival 2011
+  "https://www.youtube.com/watch?v=48ctczjFdQE", # James Blake / The Sound Of Silence
   "https://www.youtube.com/watch?v=rh7qikFginI", # The Japanese House / Clean
   "https://www.youtube.com/watch?v=jeupYam8JT8", # The Japanese House / Cool Blue
   "https://www.youtube.com/watch?v=Qw0ibCzAa9w", # Júníus Meyvant / Hailslide (Live on KEXP)
