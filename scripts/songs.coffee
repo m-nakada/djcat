@@ -21,6 +21,7 @@ SONGS = [
   "https://www.youtube.com/watch?v=9W8mmhbXcII", # (((さらうんど))) / Siren Syrup (Audio Video)
   "https://www.youtube.com/watch?v=k474iuH0xr0", # (((さらうんど))) / きみは New Age (Music Video)
   "https://www.youtube.com/watch?v=aWaECOuSwOY", # ミツメ / Dico
+  "https://www.youtube.com/watch?v=p9ZKu1y6Jmg", # ミツメ / 停滞夜
   "https://www.youtube.com/watch?v=_gQ_SBXPk3s", # ミツメ / 煙突
   "https://www.youtube.com/watch?v=OzodjmJviVU", # Yogee New Waves / CLIMAX NIGHT (New Version)
   "https://www.youtube.com/watch?v=cnbeQ0YC7d0", # Yogee New Waves / Goodbye
