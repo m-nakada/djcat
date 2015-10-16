@@ -221,6 +221,33 @@ sendSong = (robot, songs) ->
   song = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
 
+# hubot-youtube/src/youtube.coffee
+searchSong = (robot, query) ->
+  console.log('%O', query);
+
+  robot.http("http://gdata.youtube.com/feeds/api/videos")
+    .query({
+      orderBy: "relevance"
+      'max-results': 15
+      alt: 'json'
+      q: query
+    })
+    .get() (err, res, body) ->
+      console.log('%O', res);
+      console.log('%O', body);
+      videos = JSON.parse(body)
+      videos = videos.feed.entry
+
+      unless videos?
+        robot.send "No video results for \"#{query}\""
+        return
+
+      video = videos[ Math.floor(Math.random() * videos.length) ]
+      video = msg.random videos
+      video.link.forEach (link) ->
+        if link.rel is "alternate" and link.type is "text/html"
+          robot.send link.href
+
 module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 10-19 * * 1"
@@ -231,7 +258,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 2-3"
+    cronTime: "0 */20 10-19 * * 2-5"
     onTick: ->
       sendSong robot, SONGS
       return
@@ -246,10 +273,12 @@ module.exports = (robot) ->
     start: true
     timeZone: "Asia/Tokyo"
 
-  new cronJob
-    cronTime: "0 */20 10-19 * * 5"
-    onTick: ->
-      sendSong robot, SONGS_APPLE_CM
-      return
-    start: true
-    timeZone: "Asia/Tokyo"
+  # new cronJob
+  #   # cronTime: "0 */20 10-19 * * 5"
+  #   # cronTime: "*/15 * * * * 5"
+  #   onTick: ->
+  #     query = SONGS_APPLE_CM[ Math.floor(Math.random() * SONGS_APPLE_CM.length) ]
+  #     searchSong robot, query
+  #     return
+  #   start: true
+  #   timeZone: "Asia/Tokyo"
