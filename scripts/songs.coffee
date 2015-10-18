@@ -12,12 +12,16 @@ holiday = require 'holiday-jp'
 cronJob = require('cron').CronJob
 SONGS_MIX = []
 SONGS_VA = []
+SONGS_FOLK = []
 
 fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
   SONGS_MIX = text.split "\n"
 
 fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
   SONGS_VA = text.split "\n"
+
+fs.readFile './scripts/contents/folk.txt', 'utf8', (err, text) ->
+  SONGS_FOLK = text.split "\n"
 
 SONGS = [
   "https://www.youtube.com/watch?v=lfETQNfBAD4", # cero / Summer Soul【OFFICIAL MUSIC VIDEO】
