@@ -252,13 +252,13 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 10-19 * * 1"
     onTick: ->
-      sendSong robot, SONGS_VA
+      sendSong robot, SONGS_FOLK
       return
     start: true
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 2-5"
+    cronTime: "0 */20 10-19 * * 2,3"
     onTick: ->
       sendSong robot, SONGS
       return
@@ -266,10 +266,17 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 0 10-19 * * 4"
+    cronTime: "0 */20 10-19 * * 4"
+    onTick: ->
+      sendSong robot, SONGS_VA
+      return
+    start: true
+    timeZone: "Asia/Tokyo"
+
+  new cronJob
+    cronTime: "0 0 10-19 * * 5"
     onTick: ->
       sendSong robot, SONGS_MIX
       return
     start: true
     timeZone: "Asia/Tokyo"
-
