@@ -10,12 +10,8 @@
 fs = require 'fs'
 holiday = require 'holiday-jp'
 cronJob = require('cron').CronJob
-SONGS_APPLE_CM = []
 SONGS_MIX = []
 SONGS_VA = []
-
-fs.readFile './scripts/contents/apple_commercial_songs.txt', 'utf8', (err, text) ->
-  SONGS_APPLE_CM = text.split "\n"
 
 fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
   SONGS_MIX = text.split "\n"
@@ -273,12 +269,3 @@ module.exports = (robot) ->
     start: true
     timeZone: "Asia/Tokyo"
 
-  # new cronJob
-  #   # cronTime: "0 */20 10-19 * * 5"
-  #   # cronTime: "*/15 * * * * 5"
-  #   onTick: ->
-  #     query = SONGS_APPLE_CM[ Math.floor(Math.random() * SONGS_APPLE_CM.length) ]
-  #     searchSong robot, query
-  #     return
-  #   start: true
-  #   timeZone: "Asia/Tokyo"
