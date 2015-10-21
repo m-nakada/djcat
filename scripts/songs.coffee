@@ -13,7 +13,6 @@ cronJob = require('cron').CronJob
 SONGS_MIX = []
 SONGS_VA = []
 SONGS_FOLK = []
-SONGS_BACK_TO_THE_FUTURE = []
 
 fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
   SONGS_MIX = text.split "\n"
@@ -23,9 +22,6 @@ fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
 
 fs.readFile './scripts/contents/folk.txt', 'utf8', (err, text) ->
   SONGS_FOLK = text.split "\n"
-
-fs.readFile './scripts/contents/bttf.txt', 'utf8', (err, text) ->
-  SONGS_BACK_TO_THE_FUTURE = text.split "\n"
 
 SONGS = [
   "https://www.youtube.com/watch?v=lfETQNfBAD4", # cero / Summer Soul【OFFICIAL MUSIC VIDEO】
@@ -282,14 +278,6 @@ module.exports = (robot) ->
     cronTime: "0 0 10-19 * * 5"
     onTick: ->
       sendSong robot, SONGS_MIX
-      return
-    start: true
-    timeZone: "Asia/Tokyo"
-
-  new cronJob
-    cronTime: "0 */20 10-19 * * 3"
-    onTick: ->
-      sendSong robot, SONGS_BACK_TO_THE_FUTURE
       return
     start: true
     timeZone: "Asia/Tokyo"
