@@ -287,7 +287,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */30 10-19 * * 3"
+    cronTime: "0 */20 10-19 * * 3"
     onTick: ->
       sendSong robot, SONGS_BACK_TO_THE_FUTURE
       return
