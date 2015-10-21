@@ -221,33 +221,6 @@ sendSong = (robot, songs) ->
   song = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
 
-# hubot-youtube/src/youtube.coffee
-searchSong = (robot, query) ->
-  console.log('%O', query);
-
-  robot.http("http://gdata.youtube.com/feeds/api/videos")
-    .query({
-      orderBy: "relevance"
-      'max-results': 15
-      alt: 'json'
-      q: query
-    })
-    .get() (err, res, body) ->
-      console.log('%O', res);
-      console.log('%O', body);
-      videos = JSON.parse(body)
-      videos = videos.feed.entry
-
-      unless videos?
-        robot.send "No video results for \"#{query}\""
-        return
-
-      video = videos[ Math.floor(Math.random() * videos.length) ]
-      video = msg.random videos
-      video.link.forEach (link) ->
-        if link.rel is "alternate" and link.type is "text/html"
-          robot.send link.href
-
 module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 10-19 * * 1"
