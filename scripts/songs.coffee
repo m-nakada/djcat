@@ -10,22 +10,26 @@
 fs = require 'fs'
 holiday = require 'holiday-jp'
 cronJob = require('cron').CronJob
-SONGS_MIX = []
-SONGS_VA = []
 SONGS_FOLK = []
 SONGS_HALLOWEEN = []
-
-fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
-  SONGS_MIX = text.split "\n"
-
-fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
-  SONGS_VA = text.split "\n"
+SONGS_KEXP = []
+SONGS_MIX = []
+SONGS_VA = []
 
 fs.readFile './scripts/contents/folk.txt', 'utf8', (err, text) ->
   SONGS_FOLK = text.split "\n"
 
 fs.readFile './scripts/contents/halloween.txt', 'utf8', (err, text) ->
   SONGS_HALLOWEEN = text.split "\n"
+
+fs.readFile './scripts/contents/kexp.txt', 'utf8', (err, text) ->
+  SONGS_KEXP = text.split "\n"
+
+fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
+  SONGS_MIX = text.split "\n"
+
+fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
+  SONGS_VA = text.split "\n"
 
 SONGS = [
   "https://www.youtube.com/watch?v=lfETQNfBAD4", # cero / Summer Soul【OFFICIAL MUSIC VIDEO】
@@ -212,7 +216,7 @@ sendSong = (robot, songs) ->
   room = {room: process.env.HUBOT_SLACK_ROOM}
   song = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
-
+  
 module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 10-19 * * 1"
@@ -223,7 +227,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 2,3"
+    cronTime: "0 */20 10-19 * * 2"
     onTick: ->
       sendSong robot, SONGS
       return
@@ -231,9 +235,17 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 4"
+    cronTime: "0 */20 10-19 * * 3"
     onTick: ->
       sendSong robot, SONGS_VA
+      return
+    start: true
+    timeZone: "Asia/Tokyo"
+
+  new cronJob
+    cronTime: "0 0,30 10-19 * * 4"
+    onTick: ->
+      sendSong robot, SONGS_KEXP
       return
     start: true
     timeZone: "Asia/Tokyo"
