@@ -216,10 +216,10 @@ sendSong = (robot, songs) ->
   room = {room: process.env.HUBOT_SLACK_ROOM}
   song = songs[ Math.floor(Math.random() * songs.length) ]
   robot.send room, song
-  
+
 module.exports = (robot) ->
   new cronJob
-    cronTime: "0 */20 10-19 * * 1"
+    cronTime: "0 */20 9-20 * * 1"
     onTick: ->
       sendSong robot, SONGS_FOLK
       return
@@ -227,7 +227,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 2"
+    cronTime: "0 */20 9-20 * * 2"
     onTick: ->
       sendSong robot, SONGS
       return
@@ -235,7 +235,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 3"
+    cronTime: "0 */20 9-20 * * 3"
     onTick: ->
       sendSong robot, SONGS_VA
       return
@@ -243,7 +243,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 0,30 10-19 * * 4"
+    cronTime: "0 0,30 9-20 * * 4"
     onTick: ->
       sendSong robot, SONGS_KEXP
       return
@@ -251,7 +251,7 @@ module.exports = (robot) ->
     timeZone: "Asia/Tokyo"
 
   # new cronJob
-  #   cronTime: "0 0 10-19 * * 5"
+  #   cronTime: "0 0 9-20 * * 5"
   #   onTick: ->
   #     sendSong robot, SONGS_MIX
   #     return
@@ -259,7 +259,7 @@ module.exports = (robot) ->
   #   timeZone: "Asia/Tokyo"
 
   new cronJob
-    cronTime: "0 */20 10-19 * * 5"
+    cronTime: "0 */20 9-20 * * 5"
     onTick: ->
       sendSong robot, SONGS_HALLOWEEN
       return
