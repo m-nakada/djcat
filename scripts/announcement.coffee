@@ -14,7 +14,7 @@ cronJob = require('cron').CronJob
 MESSAGES = [
   ':loudspeaker: 今日はライブセッションを中心にお届けします',
   ':loudspeaker: 今日は Mix 音源を中心にお届けします',
-  ':loudspeaker: 今日は Halloween にちなんだ曲をお届けします :jack_o_lantern: :smiling_imp: :ghost:'
+  ':loudspeaker: 今日は Halloween にちなんだ曲を（こじつけ感たっぷりに）お届けします :jack_o_lantern: :smiling_imp: :ghost:'
 ]
 
 sendMessage = (robot, message) ->
