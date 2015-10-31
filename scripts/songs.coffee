@@ -11,16 +11,12 @@ fs = require 'fs'
 holiday = require 'holiday-jp'
 cronJob = require('cron').CronJob
 SONGS_FOLK = []
-SONGS_HALLOWEEN = []
 SONGS_KEXP = []
 SONGS_MIX = []
 SONGS_VA = []
 
 fs.readFile './scripts/contents/folk.txt', 'utf8', (err, text) ->
   SONGS_FOLK = text.split "\n"
-
-fs.readFile './scripts/contents/halloween.txt', 'utf8', (err, text) ->
-  SONGS_HALLOWEEN = text.split "\n"
 
 fs.readFile './scripts/contents/kexp.txt', 'utf8', (err, text) ->
   SONGS_KEXP = text.split "\n"
@@ -250,18 +246,10 @@ module.exports = (robot) ->
     start: true
     timeZone: "Asia/Tokyo"
 
-  # new cronJob
-  #   cronTime: "0 0 9-20 * * 5"
-  #   onTick: ->
-  #     sendSong robot, SONGS_MIX
-  #     return
-  #   start: true
-  #   timeZone: "Asia/Tokyo"
-
   new cronJob
-    cronTime: "0 */20 9-20 * * 5"
+    cronTime: "0 0 9-20 * * 5"
     onTick: ->
-      sendSong robot, SONGS_HALLOWEEN
+      sendSong robot, SONGS_MIX
       return
     start: true
     timeZone: "Asia/Tokyo"
