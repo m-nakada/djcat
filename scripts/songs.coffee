@@ -24,7 +24,7 @@ fs.readFile './scripts/contents/kexp.txt', 'utf8', (err, text) ->
 fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
   SONGS_MIX = text.split "\n"
 
-fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
+fs.readFile './scripts/contents/songs_va.txt', 'utf8', (err, text) ->
   SONGS_VA = text.split "\n"
 
 SONGS = [
