@@ -15,6 +15,7 @@ SONGS_FOLK = []
 SONGS_LIVE = []
 SONGS_MIX = []
 SONGS_VA = []
+SONGS_SW = []
 
 fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
   SONGS = text.split "\n"
@@ -32,6 +33,9 @@ fs.readFile './scripts/contents/songs_va.txt', 'utf8', (err, text) ->
   SONGS_VA = text.split "\n"
 
 sendSong = (robot, songs) ->
+fs.readFile './scripts/contents/starwars.txt', 'utf8', (err, text) ->
+  SONGS_SW = text.split "\n"
+
   unless process.env.HUBOT_SLACK_ROOM
     robot.logger.error "Missing HUBOT_SLACK_ROOM. `heroku config:set HUBOT_SLACK_ROOM=room name`"
     return
