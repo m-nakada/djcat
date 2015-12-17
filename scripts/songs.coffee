@@ -16,6 +16,7 @@ SONGS_LIVE = []
 SONGS_MIX = []
 SONGS_VA = []
 SONGS_SW = []
+song_index = 0
 
 fs.readFile './scripts/contents/songs.txt', 'utf8', (err, text) ->
   SONGS = text.split "\n"
@@ -32,24 +33,33 @@ fs.readFile './scripts/contents/mix.txt', 'utf8', (err, text) ->
 fs.readFile './scripts/contents/songs_va.txt', 'utf8', (err, text) ->
   SONGS_VA = text.split "\n"
 
-sendSong = (robot, songs) ->
 fs.readFile './scripts/contents/starwars.txt', 'utf8', (err, text) ->
   SONGS_SW = text.split "\n"
 
+nextSong = (songs, random) ->
+  if random
+    song = songs[ Math.floor(Math.random() * songs.length) ]
+  else
+    song_index = 0 unless songs.length > song_index
+    console.log song_index
+    song = songs[song_index++]
+  return song
+
+sendSong = (robot, songs, random) ->
   unless process.env.HUBOT_SLACK_ROOM
     robot.logger.error "Missing HUBOT_SLACK_ROOM. `heroku config:set HUBOT_SLACK_ROOM=room name`"
     return
-
   return if holiday.isHoliday(new Date())
+
   room = {room: process.env.HUBOT_SLACK_ROOM}
-  song = songs[ Math.floor(Math.random() * songs.length) ]
+  song = nextSong(songs, random)
   robot.send room, song
 
 module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 9-20 * * 1"
     onTick: ->
-      sendSong robot, SONGS_FOLK
+      sendSong robot, SONGS_FOLK, true
       return
     start: true
     timeZone: "Asia/Tokyo"
@@ -57,7 +67,7 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 9-20 * * 2"
     onTick: ->
-      sendSong robot, SONGS
+      sendSong robot, SONGS, true
       return
     start: true
     timeZone: "Asia/Tokyo"
@@ -65,7 +75,7 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 */20 9-20 * * 3"
     onTick: ->
-      sendSong robot, SONGS_VA
+      sendSong robot, SONGS_VA, true
       return
     start: true
     timeZone: "Asia/Tokyo"
@@ -73,7 +83,7 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 0,30 9-20 * * 4"
     onTick: ->
-      sendSong robot, SONGS_LIVE
+      sendSong robot, SONGS_LIVE, true
       return
     start: true
     timeZone: "Asia/Tokyo"
@@ -81,7 +91,8 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 0 9-20 * * 5"
     onTick: ->
-      sendSong robot, SONGS_MIX
+      sendSong robot, SONGS_SW, false
+      # sendSong robot, SONGS_MIX
       return
     start: true
     timeZone: "Asia/Tokyo"
