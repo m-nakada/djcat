@@ -39,7 +39,7 @@ module.exports = (robot) ->
   new cronJob
     cronTime: "0 0 9 * * 5"
     onTick: ->
-      sendMessage robot, MESSAGES[3]
+      sendMessage robot, MESSAGES[1]
       return
     start: true
     timeZone: "Asia/Tokyo"
