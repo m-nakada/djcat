@@ -9,6 +9,7 @@
 
 fs = require 'fs'
 holiday = require 'holiday-jp'
+offday  = require './offday'
 cronJob = require('cron').CronJob
 SONGS = []
 SONGS_FOLK = []
@@ -49,7 +50,10 @@ sendSong = (robot, songs, random) ->
   unless process.env.HUBOT_SLACK_ROOM
     robot.logger.error "Missing HUBOT_SLACK_ROOM. `heroku config:set HUBOT_SLACK_ROOM=room name`"
     return
-  return if holiday.isHoliday(new Date())
+
+  date = new Date()
+  return if offday.isOffday(date)
+  return if holiday.isHoliday(date)
 
   room = {room: process.env.HUBOT_SLACK_ROOM}
   song = nextSong(songs, random)
